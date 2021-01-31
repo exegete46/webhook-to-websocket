@@ -1,24 +1,31 @@
-# README
+# webhook-to-websocket
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Super-simple Rails app for forwarding webhook requests to websockets.
 
-Things you may want to cover:
+# Beware!
 
-* Ruby version
+This project does not include any kind of security!  It will forward **all**
+requests to the `hooks` controller to the websocket!
 
-* System dependencies
+# Getting Started
 
-* Configuration
+I suggest using the devcontainers configuration in VS Code, or another
+Ruby 2.7 development environment.  Then start the rails server:
 
-* Database creation
+```sh
+$ rails s
+```
 
-* Database initialization
+This should start the Rails server on port `3000` on localost.
 
-* How to run the test suite
+# Webhooks
 
-* Services (job queues, cache servers, search engines, etc.)
+There are two endpoints, one for POST and one for GET:
 
-* Deployment instructions
+- `/hooks/get`
+- `/hooks/post`
 
-* ...
+Pretty self-explainitory.  If you open [the root of the site](http://localhost:3000/)
+you should see a demo page.  A Javascript `alert()` should pop up when a request comes
+in, and the contents of the request is output with `console.dir()`.  See
+`app/javascript/channels/broadcast_channel.js` for details.
